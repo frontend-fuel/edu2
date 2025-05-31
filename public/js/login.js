@@ -122,32 +122,63 @@ class LoginHandler {
             this.showLoading(true);
             this.errorMessage.style.display = 'none';
 
-            const response = await fetch('/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: this.email.value,
-                    password: this.password.value,
-                    role: this.role.value
-                })
+            console.log('Logging in with:', {
+                email: this.email.value,
+                role: this.role.value,
+                passwordLength: this.password.value.length
             });
 
-            const data = await response.json();
+            // First try with the serverless endpoint
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: this.email.value,
+                        password: this.password.value,
+                        role: this.role.value
+                    })
+                });
 
-            if (!response.ok) {
-                throw new Error(data.error || 'Login failed');
+                // Even if we get a non-OK response, try to read the response body
+                let responseText;
+                try {
+                    responseText = await response.text();
+                    console.log('Response status:', response.status);
+                    console.log('Response text:', responseText);
+                    
+                    // Try to parse as JSON if possible
+                    let data;
+                    try {
+                        data = JSON.parse(responseText);
+                        
+                        if (response.ok) {
+                            // Success! Save credentials if remember me is checked
+                            this.saveCredentials();
+                            
+                            // Save token
+                            localStorage.setItem('token', data.token);
+                            
+                            // Redirect to appropriate dashboard
+                            this.redirectToDashboard(data.user.role);
+                            return;
+                        } else {
+                            throw new Error(data.error || 'Login failed');
+                        }
+                    } catch (parseError) {
+                        console.error('Error parsing response as JSON:', parseError);
+                        throw new Error(`Server error: ${responseText || 'Unknown error'}`); 
+                    }
+                } catch (textError) {
+                    console.error('Could not read response text:', textError);
+                    throw new Error('Could not read server response');
+                }
+            } catch (serverlessError) {
+                console.error('Serverless endpoint error:', serverlessError);
+                this.showError(serverlessError.message || 'Login failed - please try again');
             }
-
-            // Save credentials if remember me is checked
-            this.saveCredentials();
-
-            // Save token
-            localStorage.setItem('token', data.token);
-
-            // Redirect to appropriate dashboard
-            this.redirectToDashboard(data.user.role);
 
         } catch (error) {
             this.showError(error.message);

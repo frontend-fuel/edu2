@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
 
-const JWT_SECRET = 'edusquare-secret-key'; // In production, use environment variable
+// Use environment variable for JWT secret or fallback to a default (in development only)
+const JWT_SECRET = process.env.JWT_SECRET || 'edusquare-secret-key';
 
 // Login route
 router.post('/login', async (req, res) => {
