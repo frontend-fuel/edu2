@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EduSquare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">EduSquare Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="add-hod">
+                            <i class="fas fa-user-plus"></i> Add HOD
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="add-faculty">
+                            <i class="fas fa-chalkboard-teacher"></i> Add Faculty
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="view-staff">
+                            <i class="fas fa-users"></i> View Staff
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Dashboard Overview -->
+        <div id="dashboard-page" class="page active">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Total HODs</h3>
+                        <h2 id="total-hods">0</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Total Faculty</h3>
+                        <h2 id="total-faculty">0</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Total Students</h3>
+                        <h2 id="total-students">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="dashboard-card">
+                        <h3 class="mb-3">Department Statistics</h3>
+                        <div style="height: 400px; position: relative;">
+                            <canvas id="department-stats"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add HOD Page -->
+        <div id="add-hod-page" class="page">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="dashboard-card">
+                        <h2 class="mb-4">Add New HOD</h2>
+                        <form id="add-hod-form">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Department</label>
+                                <input type="text" class="form-control" name="department" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add HOD</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Faculty Page -->
+        <div id="add-faculty-page" class="page">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="dashboard-card">
+                        <h2 class="mb-4">Add New Faculty</h2>
+                        <form id="add-faculty-form">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Department</label>
+                                <input type="text" class="form-control" name="department" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Subjects</label>
+                                <input type="text" class="form-control" name="subjects" placeholder="Separate subjects with commas" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Faculty</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Staff Page -->
+        <div id="view-staff-page" class="page">
+            <div class="dashboard-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Staff Members</h2>
+                    <div class="form-group">
+                        <select class="form-select" id="department-filter">
+                            <option value="">All Departments</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Subjects</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staff-list">
+                            <!-- Staff members will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

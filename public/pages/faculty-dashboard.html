@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - EduSquare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">EduSquare Faculty</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="take-attendance">
+                            <i class="fas fa-clipboard-check"></i> Take Attendance
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="view-attendance">
+                            <i class="fas fa-chart-bar"></i> View Attendance
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="view-timetable">
+                            <i class="fas fa-calendar-alt"></i> View Timetable
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Dashboard Overview -->
+        <div id="dashboard-page" class="page active">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Total Students</h3>
+                        <h2 id="total-students">0</h2>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Total Subjects</h3>
+                        <h2 id="total-subjects">0</h2>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Attendance Marked</h3>
+                        <h2 id="attendance-marked">0</h2>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Total Classes</h3>
+                        <h2 id="total-classes">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="dashboard-card">
+                        <h3>Attendance Overview</h3>
+                        <canvas id="attendance-chart" style="height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-3">
+                                <a href="#" class="btn btn-outline-primary w-100" data-page="take-attendance">
+                                    <i class="fas fa-clipboard-check me-2"></i>Take Attendance
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <a href="#" class="btn btn-outline-primary w-100" data-page="view-attendance">
+                                    <i class="fas fa-chart-bar me-2"></i>View Attendance
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <a href="#" class="btn btn-outline-primary w-100" data-page="view-timetable">
+                                    <i class="fas fa-calendar-alt me-2"></i>View Timetable
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Take Attendance Page -->
+        <div id="take-attendance-page" class="page">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Take Attendance</h2>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Year</label>
+                            <select class="form-select" id="attendance-year" required>
+                                <option value="">Select Year</option>
+                                <option value="1">First Year</option>
+                                <option value="2">Second Year</option>
+                                <option value="3">Third Year</option>
+                                <option value="4">Fourth Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Department</label>
+                            <input type="text" class="form-control" id="attendance-department" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Section</label>
+                            <input type="text" class="form-control" id="attendance-section" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Subject</label>
+                            <select class="form-select" id="attendance-subject" required>
+                                <option value="">Select Subject</option>
+                                <!-- Subjects will be loaded here -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="attendance-form">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Roll Number</th>
+                                    <th>Student Name</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="students-list">
+                                <!-- Students will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end mt-3">
+                        <button type="submit" class="btn btn-primary">Submit Attendance</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- View Attendance Page -->
+        <div id="view-attendance-page" class="page">
+            <div class="dashboard-card">
+                <h2 class="mb-4">View Attendance</h2>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Year</label>
+                            <select class="form-select" id="view-year" required>
+                                <option value="">Select Year</option>
+                                <option value="1">First Year</option>
+                                <option value="2">Second Year</option>
+                                <option value="3">Third Year</option>
+                                <option value="4">Fourth Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Department</label>
+                            <input type="text" class="form-control" id="view-department" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Section</label>
+                            <input type="text" class="form-control" id="view-section" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label">Subject</label>
+                            <select class="form-select" id="view-subject" required>
+                                <option value="">Select Subject</option>
+                                <!-- Subjects will be loaded here -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Roll Number</th>
+                                <th>Student Name</th>
+                                <th>Classes Attended</th>
+                                <th>Total Classes</th>
+                                <th>Attendance %</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-records">
+                            <!-- Attendance records will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Timetable Page -->
+        <div id="view-timetable-page" class="page">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Weekly Timetable</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Time/Day</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timetable-grid">
+                            <!-- Timetable will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/faculty.js"></script>
+</body>
+</html>

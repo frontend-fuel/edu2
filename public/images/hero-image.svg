@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0d6efd;stop-opacity:0.2"/>
+            <stop offset="100%" style="stop-color:#0a58ca;stop-opacity:0.1"/>
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad1)"/>
+    <circle cx="400" cy="300" r="150" fill="#0d6efd" opacity="0.1"/>
+    <path d="M300,250 Q400,150 500,250 T700,250" stroke="#0d6efd" fill="none" stroke-width="2"/>
+    <path d="M100,350 Q400,450 700,350" stroke="#0a58ca" fill="none" stroke-width="2"/>
+    <g transform="translate(300,200)">
+        <rect x="0" y="0" width="200" height="250" rx="10" fill="#fff" stroke="#0d6efd" stroke-width="2"/>
+        <line x1="20" y1="40" x2="180" y2="40" stroke="#0d6efd" stroke-width="2"/>
+        <line x1="20" y1="80" x2="180" y2="80" stroke="#0d6efd" stroke-width="2"/>
+        <line x1="20" y1="120" x2="180" y2="120" stroke="#0d6efd" stroke-width="2"/>
+        <circle cx="40" cy="180" r="20" fill="#0d6efd"/>
+        <circle cx="100" cy="180" r="20" fill="#0d6efd"/>
+        <circle cx="160" cy="180" r="20" fill="#0d6efd"/>
+    </g>
+</svg>

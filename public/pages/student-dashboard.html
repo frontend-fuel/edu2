@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduSquare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">EduSquare Student</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="view-attendance">
+                            <i class="fas fa-clipboard-check"></i> View Attendance
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="view-timetable">
+                            <i class="fas fa-calendar-alt"></i> View Timetable
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Dashboard Overview -->
+        <div id="dashboard-page" class="page active">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Total Subjects</h3>
+                        <h2 id="total-subjects">0</h2>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-percentage"></i>
+                        <h3>Overall Attendance</h3>
+                        <h2 id="overall-attendance">0%</h2>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Present Days</h3>
+                        <h2 id="present-days">0</h2>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card stats-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Total Classes</h3>
+                        <h2 id="total-classes">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="dashboard-card">
+                        <h3>Attendance Overview</h3>
+                        <canvas id="attendance-chart" style="height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        <div class="row text-center">
+                            <div class="col-md-6 mb-3">
+                                <a href="#" class="btn btn-outline-primary w-100" data-page="view-attendance">
+                                    <i class="fas fa-clipboard-check me-2"></i>View Attendance
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="#" class="btn btn-outline-primary w-100" data-page="view-timetable">
+                                    <i class="fas fa-calendar-alt me-2"></i>View Timetable
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Attendance Page -->
+        <div id="view-attendance-page" class="page">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Subject-wise Attendance</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Classes Attended</th>
+                                <th>Total Classes</th>
+                                <th>Attendance %</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-records">
+                            <!-- Attendance records will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Timetable Page -->
+        <div id="view-timetable-page" class="page">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Weekly Timetable</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Time/Day</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timetable-grid">
+                            <!-- Timetable will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/student.js"></script>
+</body>
+</html>

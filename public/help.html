@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduSquare Help Desk</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #4f46e5;
+    }
+    .glow-button {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      box-shadow: 0 0 15px rgba(59,130,246,0.6), 0 0 30px rgba(99,102,241,0.6);
+      transition: all 0.3s ease-in-out;
+    }
+    .glow-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(59,130,246,0.8), 0 0 45px rgba(99,102,241,0.8);
+    }
+    .faq-item {
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      transform: translateX(10px);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-100 via-blue-200 to-blue-300 min-h-screen text-gray-800 font-sans">
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-white bg-opacity-90 backdrop-blur-md shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <img src="EduSquare-logo.png" alt="EduSquare" class="w-10 h-10">
+          <span class="text-xl font-bold text-blue-900">EduSquare Help Desk</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="glow-button text-white py-2 px-4 rounded-xl text-sm font-semibold mr-4">Login</a>
+          <a href="index.html" class="glow-button text-white py-2 px-4 rounded-xl text-sm font-semibold">Home</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Help Categories -->
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-blue-900 mb-8" data-aos="fade-up">How can we help you?</h2>
+        <div class="grid md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition">
+            <h3 class="text-xl font-semibold text-blue-800 mb-3">For Students</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Attendance tracking</li>
+              <li>• Academic performance</li>
+              <li>• Timetable access</li>
+              <li>• Login issues</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition">
+            <h3 class="text-xl font-semibold text-blue-800 mb-3">For Faculty</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Mark attendance</li>
+              <li>• Update marks</li>
+              <li>• Class management</li>
+              <li>• Reports generation</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition">
+            <h3 class="text-xl font-semibold text-blue-800 mb-3">For Admin/HOD</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Department management</li>
+              <li>• User management</li>
+              <li>• System settings</li>
+              <li>• Analytics & reports</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-blue-900 mb-8" data-aos="fade-up">Frequently Asked Questions</h2>
+        <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="faq-item bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">How can I view my attendance?</h3>
+            <p class="text-gray-600">Log in to your student dashboard. Your attendance for each subject will be displayed in the attendance section with detailed statistics.</p>
+          </div>
+          <div class="faq-item bg-white rounded-xl p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">How do I contact my department HOD?</h3>
+            <p class="text-gray-600">You can find your HOD's contact information in your department section. Alternatively, use the contact form below to send a message.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form Section -->
+      <section class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-blue-900 mb-8" data-aos="fade-up">Contact Support</h2>
+        <div class="bg-white rounded-xl p-8 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+          <form id="helpDeskForm" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-gray-700 mb-2">Name</label>
+                <input type="text" id="contactName" name="name" required class="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+              </div>
+              <div>
+                <label class="block text-gray-700 mb-2">Email</label>
+                <input type="email" id="contactEmail" name="email" required class="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+              </div>
+            </div>
+            <div>
+              <label class="block text-gray-700 mb-2">Category</label>
+              <select id="category" name="category" required class="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition">
+                <option value="">Select a category</option>
+                <option value="Technical Issue">Technical Issue</option>
+                <option value="Account Access">Account Access</option>
+                <option value="Attendance">Attendance</option>
+                <option value="Academic">Academic</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-gray-700 mb-2">Message</label>
+              <textarea rows="4" id="contactMessage" name="message" required class="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"></textarea>
+            </div>
+            <button type="submit" class="w-full glow-button text-white py-4 rounded-xl text-lg font-semibold">
+              Send Message
+            </button>
+            <div id="formStatus" class="text-center hidden">
+              <p class="text-green-600 font-medium"></p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white bg-opacity-90">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      <div class="text-center text-sm text-gray-500">
+        &copy; 2025 EduSquare. Need immediate assistance? Email us at support@edusquare.com
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("2SttJxhuB6aKIULbC");
+    })();
+
+    // Handle help desk form submission
+    document.getElementById('helpDeskForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formStatus = document.getElementById('formStatus');
+      const statusText = formStatus.querySelector('p');
+      const submitButton = this.querySelector('button[type="submit"]');
+      
+      // Disable submit button and show loading state
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Sending...';
+      
+      // Get form data
+      const templateParams = {
+        to_name: 'Admin',
+        to_email: 'yarrusasi@gmail.com',
+        from_name: document.getElementById('contactName').value,
+        reply_to: document.getElementById('contactEmail').value,
+        category: document.getElementById('category').value,
+        message: document.getElementById('contactMessage').value
+      };
+
+      console.log('Sending help desk request:', templateParams);
+
+      // Send email using EmailJS
+      emailjs.send('service_05pjl6m', 'template_5387vm9', templateParams)
+        .then(function(response) {
+          console.log('Help desk request sent successfully:', response);
+          // Show success message
+          formStatus.classList.remove('hidden');
+          statusText.textContent = 'Thank you! Your support request has been sent. We\'ll get back to you soon.';
+          statusText.className = 'text-green-600 font-medium';
+          
+          // Reset form
+          document.getElementById('helpDeskForm').reset();
+        }, function(error) {
+          console.error('Help desk request failed:', error);
+          // Show error message
+          formStatus.classList.remove('hidden');
+          statusText.textContent = 'Sorry, there was an error sending your request. Please try again.';
+          statusText.className = 'text-red-600 font-medium';
+        })
+        .finally(function() {
+          // Re-enable submit button
+          submitButton.disabled = false;
+          submitButton.innerHTML = 'Send Message';
+        });
+    });
+  </script>
+</body>
+</html>
